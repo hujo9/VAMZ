@@ -3,19 +3,44 @@ package com.example.healthylife
 import android.content.Context
 import androidx.core.content.ContextCompat
 
-/* Trieda BmiCalculator obsahuje vzorce na výpočet BMI na základe zadaných parametrov od používateľa.
-Taktiež obsahuje vzorec na výpočet ideálnej váhy používateľa na základe jeho zadanéj váhy.*/
+/**
+ * The `BmiCalculator` class contains formulas for calculating BMI based on user input parameters.
+ * It also includes a formula for calculating the user's ideal weight based on their entered weight.
+ *
+ * @param age Vek používateľa.
+ * @param height Výška používateľa (cm).
+ * @param weight Váha používateľa (kg).
+ * @param isMale Pohlavie používateľa.
+ */
 class BmiCalculator(private val age: Int, private val height: Float, private val weight: Float, private val isMale: Boolean) {
+
+    /**
+     * Vypočíta BMI na základe zadaných parametrov.
+     *
+     * @return vráti vypočítané BMI.
+     */
     fun calculateBmi(): Float {
         val heightMeters = height / 100f
         return weight / (heightMeters * heightMeters)
     }
 
+    /**
+     * Vypočíta ideálnu váhu používateľa na základe výšky.
+     *
+     * @param height Výška používateľa (cm).
+     * @return Ideálna váha používateľa.
+     */
     fun calculateIdealWeight(height: Float): Float {
         return (height - 100) - ((height - 150) / 4)
     }
 
-    /*Funkcia nastaví farbu na základe vypočítaného BMI*/
+    /**
+     * Vráti BMI kategóriu na základe vypočítaného BMI
+     * Zmení farbu stringu na základe kategórie.
+     *
+     * @param context Kontext aplikácie.
+     * @return BMI kategória ako string.
+     */
     fun getBmiCategory(context: Context): String {
         val bmi = calculateBmi()
         return when {

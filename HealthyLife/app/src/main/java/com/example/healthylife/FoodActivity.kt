@@ -6,8 +6,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
-/* FoodActivity obsahuje prístup na všetky recepty v aplikácii. Pracuje so 6 layoutami, ktoré všetky obsahujú 10 tlačidiel.
-FoodActivity taktiež obsahuje object RecipeBook, ktorý obsahuje všetky recepty.*/
+/** FoodActivity obsahuje prístup na všetky recepty v aplikácii
+ * Pracuje so 6 layoutami, ktoré všetky obsahujú 10 tlačidiel.
+ * FoodActivity taktiež obsahuje object RecipeBook, ktorý obsahuje všetky recepty.
+ */
 
 class FoodActivity : AppCompatActivity() {
 
@@ -26,7 +28,9 @@ class FoodActivity : AppCompatActivity() {
     private lateinit var curCaloryTable: TextView
     private lateinit var curPicture: ImageView
 
-    /*Pri vytvorení sa prevezme foodType z intentu a na základe hodnoty zmení layout na požadovaný*/
+    /**
+     * Pri vytvorení sa prevezme foodType z intentu a na základe hodnoty zmení layout na požadovaný.
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val foodType = intent.getStringExtra("foodType")
@@ -40,7 +44,9 @@ class FoodActivity : AppCompatActivity() {
             else -> {
             }
         }
-        /*Pridelenie id z layoutu atributom*/
+        /*
+        Pridelenie id z layoutu atributom
+        */
         food1Button = findViewById(R.id.food1Button)
         food2Button = findViewById(R.id.food2Button)
         food3Button = findViewById(R.id.food3Button)
@@ -53,8 +59,10 @@ class FoodActivity : AppCompatActivity() {
         food10Button = findViewById(R.id.food10Button)
 
 
-        /*Tlačídla pre vyberanie konkrétneho jedla od 1 po 10. Z konkrétneho jedla sa prevezmú parametre, ktoré a aktualizuje sa layout.
-        Parametre sú následne vypísané na nový layout. */
+        /*
+        Tlačídla pre vyberanie konkrétneho jedla od 1 po 10. Z konkrétneho jedla sa prevezmú parametre, ktoré a aktualizuje sa layout.
+        Parametre sú následne vypísané na nový layout.
+        */
         food1Button.setOnClickListener {
             setContentView(R.layout.food)
             curIngredients = findViewById(R.id.ingredients)
@@ -566,7 +574,9 @@ class FoodActivity : AppCompatActivity() {
         }
     }
 
-    /*Object RecipeBook obsahuje všetky dostupné recepty, ktoré obsahuje aplikácia*/
+    /*
+    Object RecipeBook obsahuje všetky dostupné recepty, ktoré obsahuje aplikácia
+    */
     object RecipeBook {
 
         var recipeBr1 = FoodRecipe(

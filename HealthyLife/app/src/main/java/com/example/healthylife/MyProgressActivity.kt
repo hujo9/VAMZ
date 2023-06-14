@@ -15,10 +15,13 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 
-/* MyProgressActivity obsahuje základné informácie pre používateľa. Obsahuje jeho naposledy vypočítané BMI, vek, váhu a výšku.
-Používateľ si taktiež môže menežovať svoj pitný režim na základe pridávania + a - pri počte pohárov od 0 do 7. Pri 7 pohároch
-užívateľ nemôže pridávať dalšie pokiaľ neklikne na tlačídlo reset a neresetuje svoj počet pohárov. Pri vypitóm 7 poháry
-používateľ dostabe notifikáciu "Your drinking intake has been reached". Dáta na tejto obrazovke sa zísakavajú pomocou sharedPreferences.
+/**
+ * MyProgressActivity zobrazuje základné informácie o používateľovi (vek, výška, váha, bmi).
+ * Používateľ môže taktiež menežovať svoj denný príjem vody. Môže pridávať a odoberať počet pohárov (1 pohár = 2dl) od 0 po 7.
+ * Keď používateľ príde na počet pohárov 7 už nemôže pridať ani odobrať dalšie poháre.
+ * Po 7 pohároch používateľ dostane upozornenie "Your drinking intake has been reached."
+ * Počet pohárov môže používateľ resetovať kliknutím na tlačídlo Reset
+ * Dáta na obrazovke sú získane a uložené pomocou SharedPreferences.
  */
 class MyProgressActivity : AppCompatActivity() {
     private lateinit var ageValueTextView: TextView
@@ -33,7 +36,10 @@ class MyProgressActivity : AppCompatActivity() {
     private var glassCount = 0
     private lateinit var sharedPreferences: SharedPreferences
 
-    /*Aktualizácia aktuálneho počtu pohárov. Počet je následne uložený pomocou sharedPreferences*/
+    /**
+     * Aktualizuje počet pohárov a uloží pomocou SharedPreferences.
+     * Taktiež aktualizuje počet vypitých dl.
+     */
     private fun updateGlassCount() {
         glassCountTextView.text = glassCount.toString()
         sharedPreferences.edit().putInt("glassCount", glassCount).apply()
@@ -41,7 +47,10 @@ class MyProgressActivity : AppCompatActivity() {
     }
 
 
-    /*Vytvorenie notifikácie. Notifikácia sa nachádza na Channel1 a importance je vysoká. Je taktiež nastavený popis a obrázok ktorý aplikácia zobrazí*/
+    /**
+     * Vytvorí notifikáciu na Channel1. Notifikácia sa spustí po dovŕšení 7 pohárov.
+     * Titul notifikácie je "Drinking intake" a obsah "Your drinking intake has been reached.".
+     */
     private fun showNotification() {
         val notificationManager =
             getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
@@ -55,13 +64,15 @@ class MyProgressActivity : AppCompatActivity() {
         }
         val notification: Notification = NotificationCompat.Builder(this, "HealthyLife")
             .setContentTitle("Drinking intake")
-            .setContentText("Your drinking intake has been reached")
+            .setContentText("Your drinking intake has been reached.")
             .setSmallIcon(R.drawable.splash_icon)
             .build()
         notificationManager.notify(1, notification)
     }
 
-    /*Aktualizácia koľko užívateľ vypil 1 pohár sa rovná 200ml.*/
+    /**
+     * Aktualizuje počet vypitých dl na základe počtu pohárov.
+     */
     private fun updateAmountDrank() {
         val amountText = "${glassCount * 200}ml - 1400ml"
         amountDrankTextView.text = amountText
@@ -70,7 +81,9 @@ class MyProgressActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        /*Pridelenie id z layoutu atributom, taktiež sa nahrá počet pohárov, ktoré boli vypité*/
+        /*
+        Pridelenie id z layoutu atributom, taktiež sa nahrá počet pohárov, ktoré boli vypité
+        */
         setContentView(R.layout.activity_my_progress)
         ageValueTextView = findViewById(R.id.ageValueTextView)
         heightValueTextView = findViewById(R.id.heightValueTextView)
@@ -88,7 +101,9 @@ class MyProgressActivity : AppCompatActivity() {
         val decrementButton: Button = findViewById(R.id.decrementButton)
         val incrementButton: Button = findViewById(R.id.incrementButton)
 
-        /*Tlačidlá na zniženie a zvýšenie počtu pohárov. Ak poháre presiahnú počet 7 stanú sa tlačidlá nedostupné. */
+        /*
+        Tlačidlá na zniženie a zvýšenie počtu pohárov. Ak poháre presiahnú počet 7 stanú sa tlačidlá nedostupné.
+        */
         decrementButton.setOnClickListener {
             if (glassCount > 0 && glassCount < 7) {
                 glassCount--
@@ -117,7 +132,9 @@ class MyProgressActivity : AppCompatActivity() {
             }
         }
 
-        /*Tlačidlá na reset pohárov. Pri resete sa nastaví počet na 0 a ak sú tlačidlá + a - zakryté, zobrazia sa.*/
+        /*
+        Tlačidlá na reset pohárov. Pri resete sa nastaví počet na 0 a ak sú tlačidlá + a - zakryté, zobrazia sa.
+        */
         resetButton.setOnClickListener {
             glassCount = 0
             decrementButton.visibility = View.VISIBLE
@@ -126,7 +143,9 @@ class MyProgressActivity : AppCompatActivity() {
             decrementButton.isEnabled = true
         }
 
-        /*Tlačídla pre pohyb medzi aktivitami*/
+        /*
+        Tlačídla pre pohyb medzi aktivitami
+        */
         recipesButton.setOnClickListener {
             val intent = Intent(this, RecipesActivity::class.java)
             startActivity(intent)
@@ -137,8 +156,10 @@ class MyProgressActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        /*Prevzatie uložených dát. Dáta sú nasledne upravené na Int a vypísané na layout, farba pre BMI číslo je nastavená
-        * podľa BMI kategórie kde sa číslo nachádza.*/
+        /*
+        Prevzatie uložených dát. Dáta sú nasledne upravené na Int a vypísané na layout, farba pre BMI číslo je nastavená
+        * podľa BMI kategórie kde sa číslo nachádza.
+        */
         val age: Int = sharedPreferences.getInt("age", 0)
         val height: Float = sharedPreferences.getFloat("height", 0f)
         val weight: Float = sharedPreferences.getFloat("weight", 0f)

@@ -14,6 +14,12 @@ import android.os.Build
 import android.widget.*
 import androidx.core.app.NotificationCompat
 
+
+/**
+ * BmiCalculatorActivity slúži ako hlavná trieda pre výpočet BMI.
+ * Úžívateľ môže zadať svoj vek, výšku, váhu, pohlavie a vypočítať si tak svoje BMI.
+ * Aktivita taktiež umožňuje prejsť na iné aktivity (My Progress, Recipes).
+ */
 class BmiCalculatorActivity : AppCompatActivity() {
     private lateinit var age: EditText
     private lateinit var height: EditText
@@ -28,8 +34,9 @@ class BmiCalculatorActivity : AppCompatActivity() {
     private lateinit var logo: ImageView
 
 
-    /* Metóda showNotification vytvára notifikáciu na Channel1. Titul notifikácie je BMI Calculator a zobrazuje "Your changes have been saved".
-    Notifikácia sa zobrazí vždy keď užívateľ stlačí tlačidlo Calculate.
+    /**
+     * Vytvorí notifikáciu na Channel1. Notifikácia sa spustí po kliknutí na tlačidlo Calculate
+     * Titul notifikácie je "BMI Calculator" a obsah "Your changes have been saved.".
      */
     private fun showNotification() {
         val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
@@ -54,7 +61,9 @@ class BmiCalculatorActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bmi_calculator)
 
-        /*Pridelenie id z layoutu atributom, zobrazenie loga*/
+        /*
+        Pridelenie id z layoutu atributom, zobrazenie loga
+        */
         age = findViewById(R.id.ageEditText)
         height = findViewById(R.id.heightEditText)
         weight = findViewById(R.id.weightEditText)
@@ -68,7 +77,9 @@ class BmiCalculatorActivity : AppCompatActivity() {
         logo = findViewById(R.id.logo)
         logo.setImageResource(R.drawable.logo)
 
-        /*Tlačídla pre pohyb medzi aktivitami*/
+        /*
+        Tlačídla pre pohyb medzi aktivitami
+        */
         myProgressButton.setOnClickListener {
             val intent = Intent(this, MyProgressActivity::class.java)
             startActivity(intent)
@@ -79,9 +90,13 @@ class BmiCalculatorActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        /* calculateButton slúži na výpočet BMI na základe pridaných hodnôt. Skontroluje či všetky očakávané dáta boli vyplnené ak nie vyhodí Toast
-        "Plase enter all required fields.". Rovnako funguje aj pri výbere pohlavia. Po vypočítaní BMI sa dáta pomocou shatedPreferences
-        uložia. Vypíše sa výsledné BMI spolu s ideálnou váhou a váhovou kategóriou. Každá váhová kategória sa líši farbou textu.
+        /**
+         * calculateButton vypočíta BMI na základe prijatých parametrov.
+         * Skontroluje či všetky parametre boli zadané, ak nie vypíše Toast "Please enter all required fields."
+         * Rovnako skontroluje či bolo zadané pohlavie užívateľa, ak nie vypíše Toast "Please select a gender."
+         * Po vypočítaní BMI dáta uloží pomocou SharedPreferences.
+         * Vypíše vypočítané BMI a ideálnu váhu používateľa. Nastaví farbu na základe BMI kategórie do ktorej spadá BMI.
+         * Nakoniec sa zavolá notifikácia spomenutá vyšśie.
          */
         calculateButton.setOnClickListener {
             val ageText = age.text.toString()

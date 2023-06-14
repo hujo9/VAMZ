@@ -1,13 +1,15 @@
 package com.example.healthylife
 
-
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 
-/* Trieda obsahujúca tlačídlá na konkrétny typ jedla. Po kliknutí na tlačidlo sa nastáví hodnoda choice na príslušný typ jedla.
-Tento atribút sa dalej využíva v aplikácii na zistenie kde sa používateľ nachádza.*/
+/**
+ * RecipesActivity zobrazuje tlačítka na špecifický typ jedla.
+ * Po kliknutí na jedno z tlačítok je hodnota choice nastavená na vybraný typ jedla.
+ * Tento atribút je dalej používaný v aplikácii na nastavenie aplikácie podľa požiadavky používateľa.
+ */
 class RecipesActivity : AppCompatActivity() {
     private lateinit var myProgressButton: Button
     private lateinit var bmiCalculatorButton: Button
@@ -19,6 +21,10 @@ class RecipesActivity : AppCompatActivity() {
     private lateinit var snacksButton: Button
     private lateinit var choice: String
 
+    /**
+     * Vráti hodnotu choice.
+     * @return hodnota choice
+     */
     fun getChoice(): String {
         return choice
     }
@@ -27,7 +33,6 @@ class RecipesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recipes)
 
-        /*Pridelenie id z layoutu atributom*/
         myProgressButton = findViewById(R.id.myProgressButton)
         bmiCalculatorButton = findViewById(R.id.bmiCalculatorButton)
         breakfast = findViewById(R.id.breakfastButton)
@@ -37,7 +42,6 @@ class RecipesActivity : AppCompatActivity() {
         dessertsButton = findViewById(R.id.dessertsButton)
         snacksButton = findViewById(R.id.snacksButton)
 
-        /*Tlačídla pre pohyb medzi aktivitami*/
         myProgressButton.setOnClickListener {
             val intent = Intent(this, MyProgressActivity::class.java)
             startActivity(intent)
@@ -48,7 +52,6 @@ class RecipesActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        /*Tlačídla, ktoŕe vyberajú typ jedla. Po kliknutí sa hodnota choice nastaví na vybraný typ a spustí sa aktivita FoodActivity kde je tento atribút následne využívaný. */
         breakfast.setOnClickListener {
             choice = "breakfast"
             val intent = Intent(this, FoodActivity::class.java)
@@ -90,6 +93,5 @@ class RecipesActivity : AppCompatActivity() {
             intent.putExtra("foodType", getChoice())
             startActivity(intent)
         }
-
     }
 }
