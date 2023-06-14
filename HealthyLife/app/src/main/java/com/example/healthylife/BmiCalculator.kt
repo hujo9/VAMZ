@@ -4,8 +4,7 @@ import android.content.Context
 import androidx.core.content.ContextCompat
 
 /**
- * The `BmiCalculator` class contains formulas for calculating BMI based on user input parameters.
- * It also includes a formula for calculating the user's ideal weight based on their entered weight.
+ * BmiCalculator obsahuje vzorce na výpočet BMI a ideálnej váhy na základe parametrov.
  *
  * @param age Vek používateľa.
  * @param height Výška používateľa (cm).
