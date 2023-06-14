@@ -1,0 +1,40 @@
+<resources>
+    <!-- Button style -->
+    <style name="MyAppButton" parent="Widget.AppCompat.Button">
+        <item name="android:background">@color/dark_blue</item>
+        <item name="backgroundTint">@color/dark_blue</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+    <style name="Breakfast" parent="Widget.AppCompat.Button">
+        <item name="android:background">@color/light_blue</item>
+        <item name="backgroundTint">@color/light_blue</item>
+    </style>
+    <style name="MainDishes" parent="Widget.AppCompat.Button">
+        <item name="android:background">@color/lime</item>
+        <item name="backgroundTint">@color/lime</item>
+    </style>
+    <style name="Soups" parent="Widget.AppCompat.Button">
+        <item name="android:background">@color/obese</item>
+        <item name="backgroundTint">@color/obese</item>
+    </style>
+    <style name="Salads" parent="Widget.AppCompat.Button">
+        <item name="android:background">@color/light_brown</item>
+        <item name="backgroundTint">@color/light_brown</item>
+    </style>
+    <style name="Desserts" parent="Widget.AppCompat.Button">
+        <item name="android:background">@color/overweight</item>
+        <item name="backgroundTint">@color/overweight</item>
+    </style>
+    <style name="Snacks" parent="Widget.AppCompat.Button">
+        <item name="android:background">@color/yellow</item>
+        <item name="backgroundTint">@color/yellow</item>
+    </style>
+    <style name="SquareTextView">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:padding">16dp</item>
+    </style>
+</resources>

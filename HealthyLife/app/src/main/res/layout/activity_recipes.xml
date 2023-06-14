@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/myProgressButton"
+            style="@style/MyAppButton"
+            android:layout_width="147dp"
+            android:layout_height="match_parent"
+            android:text="My Progress" />
+
+        <Button
+            android:id="@+id/recipesButton"
+            style="@style/MyAppButton"
+            android:layout_width="109dp"
+            android:layout_height="match_parent"
+            android:text="Recipes" />
+
+        <Button
+            android:id="@+id/bmiCalculatorButton"
+            style="@style/MyAppButton"
+            android:layout_width="112dp"
+            android:layout_height="match_parent"
+            android:text="BMI" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/breakfastButton"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="Breakfast"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        style="@style/Breakfast" />
+
+    <Button
+        android:id="@+id/mainDishesButton"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="Main Dishes"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        style="@style/MainDishes" />
+
+    <Button
+        android:id="@+id/soupsButton"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="Soups"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        style="@style/Soups" />
+
+    <Button
+        android:id="@+id/saladsButton"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="Salads"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        style="@style/Salads" />
+
+    <Button
+        android:id="@+id/dessertsButton"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="Desserts"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        style="@style/Desserts" />
+
+    <Button
+        android:id="@+id/snacksButton"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="Snacks"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        style="@style/Snacks" />
+</LinearLayout>
